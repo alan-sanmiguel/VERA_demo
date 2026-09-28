@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import "./Login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -26,51 +27,57 @@ function Login() {
   };
 
   return (
-    <div style={{ padding: "40px", maxWidth: "400px", margin: "auto" }}>
-      <h1>VERA</h1>
-      <p>Plataforma de auditoría interna</p>
+    <div className="login-page">
+      <div className="login-card">
+        <div className="logo-box">
+          <span className="logo-v">V</span>
+          <span className="logo-check">✓</span>
+        </div>
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "15px" }}>
+        <h1>VERA</h1>
+
+        <p className="brand-line">
+          VERIFICACIÓN · EVIDENCIA · RIESGO · AUDITORÍA
+        </p>
+
+        <p className="subtitle">
+          Plataforma de auditoría interna
+        </p>
+
+        <p className="login-message">
+          Inicia sesión para acceder al portafolio y a tus auditorías.
+        </p>
+
+        <form onSubmit={handleSubmit}>
           <label>Usuario</label>
-          <br />
 
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: "10px" }}
+            placeholder="Usuario"
           />
-        </div>
 
-        <div style={{ marginBottom: "15px" }}>
           <label>Contraseña</label>
-          <br />
 
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: "10px" }}
+            placeholder="Contraseña"
           />
-        </div>
 
-        {error && (
-          <p style={{ color: "red" }}>
-            {error}
-          </p>
-        )}
+          {error && <p className="error">{error}</p>}
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "12px"
-          }}
-        >
-          Iniciar sesión
-        </button>
-      </form>
+          <button type="submit">
+            Iniciar sesión
+          </button>
+        </form>
+
+        <p className="create-account">
+          ¿Primera vez en VERA? <strong>Crear cuenta</strong>
+        </p>
+      </div>
     </div>
   );
 }
